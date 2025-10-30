@@ -24,4 +24,21 @@
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
+  overflow-x: hidden;
+}
+
+
+@layer utilities {
+  .before-underline::after {
+    content: "";
+    position: absolute;
+    bottom: -4px; /* відстань від тексту */
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #b91c1c; /* червоний (#b91c1c — Tailwind red-700) */
+    border-radius: 9999px;
+    transform: scaleX(0.9) rotate(-2deg); /* легкий нахил для ефекту руки */
+    transform-origin: left center;
+  }
 }

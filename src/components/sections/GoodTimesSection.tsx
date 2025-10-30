@@ -76,7 +76,7 @@ export default function GoodTimesSection() {
           </div>
         </div>
 
-        <p className="mt-8 text-lg md:text-xl text-neutral-800 font-serif leading-relaxed">
+        <p className="mt-8 text-xl md:text-2xl text-neutral-800 font-serif leading-relaxed">
           Simple smiles, peaceful days. <br />
           The beauty of everyday life.
         </p>
