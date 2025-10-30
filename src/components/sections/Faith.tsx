@@ -1,16 +1,83 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function FaithSection() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // === Анімація для блоків зверху вниз ===
+      gsap.utils.toArray(".fade-up").forEach((el: any) => {
+        gsap.from(el, {
+          y: 80,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      });
+
+      // === Легке з’явлення карток ===
+      gsap.utils.toArray(".card-anim").forEach((el: any, i) => {
+        gsap.from(el, {
+          y: 60,
+          opacity: 0,
+          delay: i * 0.15,
+          duration: 0.9,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 90%",
+          },
+        });
+      });
+
+      // === Фото в другому блоці — з різних сторін ===
+      gsap.from(".photos-left img:nth-child(odd)", {
+        x: -100,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".photos-left",
+          start: "top 85%",
+        },
+      });
+
+      gsap.from(".photos-left img:nth-child(even)", {
+        x: 100,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".photos-left",
+          start: "top 85%",
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative flex flex-col items-center justify-center py-20 sm:py-32 px-4">
+    <section ref={sectionRef} className="relative flex flex-col items-center justify-center py-20 sm:py-32 px-4">
       {/* === 1. Перший блок === */}
-      <div className="relative w-full max-w-4xl mx-auto mb-24 sm:mb-40">
-        {/* Сітка зображень */}
+      <div className="fade-up relative w-full max-w-4xl mx-auto mb-24 sm:mb-40">
         <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-3 sm:grid-rows-2 gap-4 h-auto sm:h-[500px]">
           <div className="relative sm:row-span-2 rounded-xl overflow-hidden h-[40vh] sm:h-auto">
             <Image src="/faith1.jpg" alt="Faith left image" fill className="object-cover" />
@@ -23,30 +90,28 @@ export default function FaithSection() {
           </div>
         </div>
 
-        {/* Білий блок поверх */}
         <div className="absolute hidden sm:flex left-[40%] inset-0 items-center justify-center pointer-events-none">
           <div className="bg-card shadow-lg rounded-tl-xl rounded-bl-xl px-10 py-6 text-lg font-serif text-center leading-snug max-w-xl">
             It’s hard for us, but we keep going — and what helps us is...
           </div>
         </div>
 
-        {/* На мобільному — текст під фото */}
         <div className="sm:hidden mt-6 text-center text-base font-serif text-foreground">
           It’s hard for us, but we keep going — and what helps us is...
         </div>
       </div>
 
       {/* === 2. Другий блок === */}
-      <div className="relative w-full max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-center mb-24">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="fade-up relative w-full max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-center mb-24">
+        <div className="photos-left grid grid-cols-2 gap-4">
           <div className="relative h-[35vh] sm:h-[250px] rounded-xl overflow-hidden">
-            <Image src="/faith4.jpg" alt="People 1" fill className="object-cover" />
+            <Image src="/faith4.jpg" alt="People 1" fill className="object-cover img-hover" />
           </div>
           <div className="relative h-[35vh] sm:h-[250px] rounded-xl overflow-hidden">
-            <Image src="/faith5.png" alt="People 2" fill className="object-cover" />
+            <Image src="/faith5.png" alt="People 2" fill className="object-cover img-hover" />
           </div>
           <div className="relative col-span-2 h-[40vh] sm:h-[260px] rounded-xl overflow-hidden">
-            <Image src="/faith6.png" alt="People 3" fill className="object-cover" />
+            <Image src="/faith6.png" alt="People 3" fill className="object-cover img-hover" />
           </div>
         </div>
 
@@ -63,7 +128,7 @@ export default function FaithSection() {
       </div>
 
       {/* === 3. Текст перед картками === */}
-      <div className="text-center space-y-4 mb-10 sm:mb-12 max-w-2xl">
+      <div className="fade-up text-center space-y-4 mb-10 sm:mb-12 max-w-2xl">
         <h2 className="text-xl sm:text-2xl font-serif">
           And <span className="font-bold">YOU</span> also can help Ukraine
         </h2>
@@ -76,8 +141,7 @@ export default function FaithSection() {
 
       {/* === 4. Картки === */}
       <div className="flex flex-col md:flex-row gap-6 justify-center items-center w-full">
-        {/* Donate */}
-        <Card className="w-full sm:w-[260px] text-center">
+        <Card className="card-anim w-full sm:w-[260px] text-center">
           <CardHeader>
             <CardTitle className="font-serif text-lg">Donate</CardTitle>
           </CardHeader>
@@ -97,8 +161,7 @@ export default function FaithSection() {
           </CardFooter>
         </Card>
 
-        {/* Share */}
-        <Card className="w-full sm:w-[260px] text-center">
+        <Card className="card-anim w-full sm:w-[260px] text-center">
           <CardHeader>
             <CardTitle className="font-serif text-lg">Share</CardTitle>
           </CardHeader>

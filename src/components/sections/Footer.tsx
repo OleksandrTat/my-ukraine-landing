@@ -1,14 +1,56 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
-  return (
-    <footer className="bg-gradient-to-b from-black via-[#0a0a0f] to-[#0b0e13] text-gray-300 pt-14 pb-10 mt-40">
-      {/* Ukrainian accent line */}
-      <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-blue-500" />
+  const footerRef = useRef(null);
 
-      <div className="max-w-6xl mx-auto px-6 mt-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Плавна поява футера
+      gsap.from(".footer-fade", {
+        opacity: 0,
+        y: 60,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+        },
+        stagger: 0.25,
+      });
+
+      // Анімація кольорової лінії
+      gsap.from(".ukraine-line", {
+        scaleX: 0,
+        transformOrigin: "left center",
+        duration: 1.4,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 95%",
+        },
+      });
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <footer
+      ref={footerRef}
+      className="bg-gradient-to-b from-black via-[#0a0a0f] to-[#0b0e13] text-gray-300 pt-14 pb-10 mt-40 overflow-hidden"
+    >
+      {/* Ukrainian accent line */}
+      <div className="ukraine-line h-1 w-full bg-gradient-to-r from-yellow-400 to-blue-500 origin-left" />
+
+      <div className="footer-fade max-w-6xl mx-auto px-6 mt-12 grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* Section 1 – Message */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left gap-3">
           <h2 className="text-white text-2xl font-serif tracking-wide">
@@ -60,10 +102,10 @@ export default function Footer() {
       </div>
 
       {/* Divider */}
-      <div className="border-t border-gray-800 mt-12 mb-6"></div>
+      <div className="footer-fade border-t border-gray-800 mt-12 mb-6"></div>
 
       {/* Copyright */}
-      <p className="text-center text-xs text-gray-500">
+      <p className="footer-fade text-center text-xs text-gray-500">
         © {new Date().getFullYear()} Remember Ukraine. Created with ❤️ for truth and peace.
       </p>
     </footer>

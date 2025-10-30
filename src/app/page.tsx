@@ -10,7 +10,7 @@ import Footer from "@/components/sections/Footer";
 export default function Home() {
   return (
     <main>
-      <header className="fixed top-4 right-6 z-50">
+      <header className="fixed bottom-4 right-6 z-50">
         <ThemeSwitch />
       </header>
       <Hero />

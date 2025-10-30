@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import {
   Carousel,
@@ -8,25 +9,89 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function BeforeAfterSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 1️⃣ Анімація вступного блоку
+      gsap.from(".intro-block", {
+        scrollTrigger: {
+          trigger: ".intro-block",
+          start: "top 85%",
+        },
+        y: 80,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      // 2️⃣ Заголовок “before / after”
+      gsap.from(".beforeafter-title", {
+        scrollTrigger: {
+          trigger: ".beforeafter-title",
+          start: "top 85%",
+        },
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      // 3️⃣ Карусель (з масштабуванням)
+      gsap.from(".beforeafter-carousel", {
+        scrollTrigger: {
+          trigger: ".beforeafter-carousel",
+          start: "top 85%",
+        },
+        scale: 0.9,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      // 4️⃣ Три елементи (діти / будинок / дівчинка)
+      gsap.utils.toArray<HTMLElement>(".emotion-block").forEach((block, i) => {
+        gsap.from(block, {
+          scrollTrigger: {
+            trigger: block,
+            start: "top 90%",
+          },
+          x: i % 2 === 0 ? -100 : 100,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+        });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative flex flex-col items-center justify-center py-20 md:py-32 overflow-hidden">
-      {/* === Радіальні градієнти (фон по боках) === */}
+    <section
+      ref={sectionRef}
+      className="relative flex flex-col items-center justify-center py-20 md:py-32 overflow-hidden"
+    >
+      {/* === Радіальні градієнти === */}
       <div className="pointer-events-none absolute inset-0 z-0">
-        {/* Лівий бік */}
+        {/* Ліві */}
         <div className="absolute left-[-25vw] top-[5vh] w-[50vw] h-[40vh] bg-[radial-gradient(circle_at_left,rgba(255,0,0,0.35),transparent_70%)] blur-[90px]" />
         <div className="absolute left-[-20vw] bottom-[20vh] w-[45vw] h-[45vh] bg-[radial-gradient(circle_at_left_bottom,rgba(255,80,80,0.25),transparent_70%)] blur-[100px]" />
         <div className="absolute left-[-10vw] top-[60vh] w-[35vw] h-[35vh] bg-[radial-gradient(circle_at_left,rgba(255,60,60,0.3),transparent_75%)] blur-[100px]" />
-
-        {/* Правий бік */}
+        {/* Праві */}
         <div className="absolute right-[-25vw] top-[10vh] w-[50vw] h-[40vh] bg-[radial-gradient(circle_at_right,rgba(255,0,0,0.35),transparent_70%)] blur-[90px]" />
         <div className="absolute right-[-15vw] bottom-[15vh] w-[45vw] h-[45vh] bg-[radial-gradient(circle_at_right_bottom,rgba(255,80,80,0.25),transparent_70%)] blur-[100px]" />
         <div className="absolute right-[-10vw] top-[55vh] w-[35vw] h-[35vh] bg-[radial-gradient(circle_at_right,rgba(255,60,60,0.3),transparent_75%)] blur-[100px]" />
       </div>
 
       {/* === 1. Вступний блок === */}
-      <div className="relative z-10 flex flex-col md:flex-row justify-center items-center w-full max-w-5xl mx-auto gap-8 md:gap-12">
+      <div className="intro-block relative z-10 flex flex-col md:flex-row justify-center items-center w-full max-w-5xl mx-auto gap-8 md:gap-12">
         <div className="relative w-[90%] md:w-[60%] rounded-xl overflow-hidden shadow-xl">
           <Image
             src="/explosion1.jpg"
@@ -39,20 +104,10 @@ export default function BeforeAfterSection() {
             <strong>5:00 a.m.</strong> We woke up to light, but it was too bright to be dawn.
           </div>
         </div>
-
-        {/* <div className="relative w-[60%] sm:w-[50%] md:w-[28%] rounded-xl overflow-hidden shadow-lg -mt-4 md:mt-0">
-          <Image
-            src="/explosion2.png"
-            alt="Explosion close-up"
-            width={500}
-            height={400}
-            className="object-cover w-full h-auto"
-          />
-        </div> */}
       </div>
 
       {/* === 2. Заголовок === */}
-      <h2 className="relative z-10 mt-16 md:mt-32 mb-6 md:mb-10 text-2xl md:text-3xl font-serif text-center">
+      <h2 className="beforeafter-title relative z-10 mt-16 md:mt-32 mb-6 md:mb-10 text-2xl md:text-3xl font-serif text-center">
         The line that divides before{" "}
         <span className="hidden md:inline">
           <Image
@@ -67,7 +122,7 @@ export default function BeforeAfterSection() {
       </h2>
 
       {/* === 3. Карусель === */}
-      <div className="relative z-10 w-full mb-20 max-w-6xl px-4 sm:px-8 overflow-visible">
+      <div className="beforeafter-carousel relative z-10 w-full mb-20 max-w-6xl px-4 sm:px-8 overflow-visible">
         <Carousel
           opts={{
             align: "center",
@@ -102,44 +157,41 @@ export default function BeforeAfterSection() {
         </Carousel>
       </div>
 
-      {/* === 4. Новий блок === */}
+      {/* === 4. Емоційні блоки === */}
       <div className="relative z-10 w-full max-w-4xl flex flex-col gap-12 md:gap-16 px-4">
-        {/* Елемент 1 */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
+        <div className="emotion-block flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
           <Image
             src="/child-home.png"
             alt="Destroyed home"
             width={350}
             height={250}
-            className="rounded-xl shadow-lg object-cover w-[80%] sm:w-[60%] md:w-[350px]"
+            className="rounded-xl img-hover-gray shadow-lg object-cover w-[80%] sm:w-[60%] md:w-[350px]"
           />
           <p className="text-lg sm:text-xl md:text-2xl font-serif max-w-sm text-center md:text-left">
             “My <span className="text-red-700">home</span>...”
           </p>
         </div>
 
-        {/* Елемент 2 */}
-        <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-6 md:gap-10">
+        <div className="emotion-block flex flex-col md:flex-row-reverse items-center justify-center gap-6 md:gap-10">
           <Image
             src="/toy-bench.png"
             alt="Lost toy"
             width={350}
             height={250}
-            className="rounded-xl shadow-lg object-cover w-[80%] sm:w-[60%] md:w-[350px]"
+            className="rounded-xl shadow-lg img-hover-gray object-cover w-[80%] sm:w-[60%] md:w-[350px]"
           />
           <p className="text-lg sm:text-xl md:text-2xl font-serif max-w-sm text-center md:text-right">
             “I lost my <span className="text-red-700">toy</span>”
           </p>
         </div>
 
-        {/* Елемент 3 */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
+        <div className="emotion-block flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
           <Image
             src="/waiting-girl.png"
             alt="Waiting girl"
             width={350}
             height={250}
-            className="rounded-xl shadow-lg object-cover w-[80%] sm:w-[60%] md:w-[350px]"
+            className="rounded-xl img-hover-gray shadow-lg object-cover w-[80%] sm:w-[60%] md:w-[350px]"
           />
           <p className="text-lg sm:text-xl md:text-2xl font-serif max-w-sm text-center">
             “Mom, when <br />
