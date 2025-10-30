@@ -36,7 +36,7 @@ export default function RememberTimes() {
       </div>
 
       {/* === SVG як зображення === */}
-      <div className="absolute left-1/2 bottom-[20vh] -translate-x-1/2 w-[85vw] h-[auto] pointer-events-none z-[-1]">
+      {/* <div className="absolute left-1/2 bottom-[20vh] -translate-x-1/2 w-[85vw] h-[auto] pointer-events-none z-[-1]">
         <Image
           src="/line.svg"
           alt="Decorative line"
@@ -45,7 +45,7 @@ export default function RememberTimes() {
           className="w-full h-auto"
           priority
         />
-      </div>
+      </div> */}
 
       {/* === Текст поверх лінії === */}
       <h2 className="relative z-10 mt-[50vh] text-2xl md:text-3xl font-serif text-center">

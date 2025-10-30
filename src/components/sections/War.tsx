@@ -11,29 +11,23 @@ import {
 
 export default function BeforeAfterSection() {
   return (
-    <section className="relative flex flex-col items-center justify-center py-32">
-      {/* === Радіальні градієнти тільки по боках, рівномірно === */}
-<div className="absolute h-full inset-0 pointer-events-none z-0">
-  {/* Ліва сторона */}
-  <div className="absolute left-[-20vw] top-[0vh] w-[50vw] h-[125vh] bg-[radial-gradient(circle_at_left,rgba(255,0,0,0.4),transparent_70%)] blur-[100px]" />
-  <div className="absolute left-[-18vw] top-[35%] w-[50vw] h-[55vh] bg-[radial-gradient(circle_at_left,rgba(255,60,60,0.35),transparent_75%)] blur-[120px]" />
-  <div className="absolute left-[-15vw] top-[70%] w-[50vw] h-[95vh] bg-[radial-gradient(circle_at_left,rgba(255,0,0,0.4),transparent_70%)] blur-[100px]" />
-  <div className="absolute left-[-17vw] top-[105%] w-[50vw] h-[35vh] bg-[radial-gradient(circle_at_left,rgba(255,80,80,0.35),transparent_75%)] blur-[110px]" />
+    <section className="relative flex flex-col items-center justify-center py-20 md:py-32 overflow-hidden">
+      {/* === Радіальні градієнти (фон по боках) === */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        {/* Лівий бік */}
+        <div className="absolute left-[-25vw] top-[5vh] w-[50vw] h-[40vh] bg-[radial-gradient(circle_at_left,rgba(255,0,0,0.35),transparent_70%)] blur-[90px]" />
+        <div className="absolute left-[-20vw] bottom-[20vh] w-[45vw] h-[45vh] bg-[radial-gradient(circle_at_left_bottom,rgba(255,80,80,0.25),transparent_70%)] blur-[100px]" />
+        <div className="absolute left-[-10vw] top-[60vh] w-[35vw] h-[35vh] bg-[radial-gradient(circle_at_left,rgba(255,60,60,0.3),transparent_75%)] blur-[100px]" />
 
-  {/* Права сторона */}
-  <div className="absolute right-[-20vw] top-[10%] w-[50vw] h-[75vh] bg-[radial-gradient(circle_at_right,rgba(255,0,0,0.4),transparent_70%)] blur-[100px]" />
-  <div className="absolute right-[-18vw] top-[45%] w-[50vw] h-[105vh] bg-[radial-gradient(circle_at_right,rgba(255,60,60,0.35),transparent_75%)] blur-[120px]" />
-  <div className="absolute right-[-15vw] top-[80%] w-[50vw] h-[75vh] bg-[radial-gradient(circle_at_right,rgba(255,0,0,0.4),transparent_70%)] blur-[100px]" />
-  <div className="absolute right-[-17vw] top-[115%] w-[50vw] h-[45vh] bg-[radial-gradient(circle_at_right,rgba(255,80,80,0.35),transparent_75%)] blur-[110px]" />
-</div>
-
-
-
-
+        {/* Правий бік */}
+        <div className="absolute right-[-25vw] top-[10vh] w-[50vw] h-[40vh] bg-[radial-gradient(circle_at_right,rgba(255,0,0,0.35),transparent_70%)] blur-[90px]" />
+        <div className="absolute right-[-15vw] bottom-[15vh] w-[45vw] h-[45vh] bg-[radial-gradient(circle_at_right_bottom,rgba(255,80,80,0.25),transparent_70%)] blur-[100px]" />
+        <div className="absolute right-[-10vw] top-[55vh] w-[35vw] h-[35vh] bg-[radial-gradient(circle_at_right,rgba(255,60,60,0.3),transparent_75%)] blur-[100px]" />
+      </div>
 
       {/* === 1. Вступний блок === */}
-      <div className="relative z-10 flex justify-center items-center w-full max-w-5xl mx-auto h-[500px]">
-        <div className="relative w-[60%] rounded-xl overflow-hidden shadow-xl">
+      <div className="relative z-10 flex flex-col md:flex-row justify-center items-center w-full max-w-5xl mx-auto gap-8 md:gap-12">
+        <div className="relative w-[90%] md:w-[60%] rounded-xl overflow-hidden shadow-xl">
           <Image
             src="/explosion1.jpg"
             alt="Explosion in Kyiv"
@@ -41,12 +35,12 @@ export default function BeforeAfterSection() {
             height={600}
             className="object-cover w-full h-auto"
           />
-          <div className="absolute top-4 left-4 text-white text-sm md:text-base p-3 rounded-md max-w-[70%] leading-snug bg-black/40 backdrop-blur-sm">
+          <div className="absolute top-4 left-4 text-white text-xs sm:text-sm md:text-base p-3 rounded-md max-w-[75%] leading-snug bg-black/40 backdrop-blur-sm">
             <strong>5:00 a.m.</strong> We woke up to light, but it was too bright to be dawn.
           </div>
         </div>
 
-        <div className="absolute right-[5%] -top-8 w-[28%] rounded-xl overflow-hidden shadow-lg">
+        {/* <div className="relative w-[60%] sm:w-[50%] md:w-[28%] rounded-xl overflow-hidden shadow-lg -mt-4 md:mt-0">
           <Image
             src="/explosion2.png"
             alt="Explosion close-up"
@@ -54,19 +48,19 @@ export default function BeforeAfterSection() {
             height={400}
             className="object-cover w-full h-auto"
           />
-        </div>
+        </div> */}
       </div>
 
       {/* === 2. Заголовок === */}
-      <h2 className="relative z-10 mt-32 mb-7 text-2xl md:text-3xl font-serif text-center">
-        The line that divides before and{" "}
-        <span>
+      <h2 className="relative z-10 mt-16 md:mt-32 mb-6 md:mb-10 text-2xl md:text-3xl font-serif text-center">
+        The line that divides before{" "}
+        <span className="hidden md:inline">
           <Image
             src="/devide-line.svg"
             alt="Divider line"
             width={70}
             height={10}
-            className="inline-block -mx-5 -mr-7"
+            className="inline-block -mx-5"
           />
         </span>{" "}
         after
@@ -87,7 +81,7 @@ export default function BeforeAfterSection() {
               (src, i) => (
                 <CarouselItem
                   key={i}
-                  className="pl-6 sm:pl-10 basis-[85%] sm:basis-[60%] lg:basis-[45%] flex justify-center transition-transform duration-500"
+                  className="pl-6 sm:pl-10 basis-[90%] sm:basis-[65%] lg:basis-[45%] flex justify-center transition-transform duration-500"
                 >
                   <div className="relative overflow-hidden rounded-2xl shadow-xl transition-transform duration-500 hover:scale-[1.03] hover:shadow-2xl">
                     <Image
@@ -103,54 +97,53 @@ export default function BeforeAfterSection() {
             )}
           </CarouselContent>
 
-          <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 bg-card/80 hover:bg-card shadow-lg rounded-full w-10 h-10" />
-          <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 bg-card/80 hover:bg-card shadow-lg rounded-full w-10 h-10" />
+          <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-lg rounded-full w-9 h-9 sm:w-10 sm:h-10" />
+          <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-lg rounded-full w-9 h-9 sm:w-10 sm:h-10" />
         </Carousel>
       </div>
 
       {/* === 4. Новий блок === */}
-      <div className="relative z-10 mt-50 w-full max-w-4xl flex flex-col gap-10">
+      <div className="relative z-10 w-full max-w-4xl flex flex-col gap-12 md:gap-16 px-4">
         {/* Елемент 1 */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
           <Image
             src="/child-home.png"
             alt="Destroyed home"
             width={350}
             height={250}
-            className="rounded-xl shadow-lg object-cover img-hover-gray"
+            className="rounded-xl shadow-lg object-cover w-[80%] sm:w-[60%] md:w-[350px]"
           />
-          <p className="text-xl md:text-2xl font-serif text-foreground/80 max-w-sm">
+          <p className="text-lg sm:text-xl md:text-2xl font-serif max-w-sm text-center md:text-left">
             “My <span className="text-red-700">home</span>...”
           </p>
         </div>
 
         {/* Елемент 2 */}
-        <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-8">
+        <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-6 md:gap-10">
           <Image
             src="/toy-bench.png"
             alt="Lost toy"
             width={350}
             height={250}
-            className="rounded-xl shadow-lg object-cover img-hover-gray"
+            className="rounded-xl shadow-lg object-cover w-[80%] sm:w-[60%] md:w-[350px]"
           />
-          <p className="text-xl md:text-2xl font-serif text-foreground/80 max-w-sm text-right">
-            “I lose my <span className="text-red-700">toy</span>”
+          <p className="text-lg sm:text-xl md:text-2xl font-serif max-w-sm text-center md:text-right">
+            “I lost my <span className="text-red-700">toy</span>”
           </p>
         </div>
 
         {/* Елемент 3 */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
           <Image
             src="/waiting-girl.png"
             alt="Waiting girl"
             width={350}
             height={250}
-            className="rounded-xl shadow-lg object-cover img-hover-gray"
+            className="rounded-xl shadow-lg object-cover w-[80%] sm:w-[60%] md:w-[350px]"
           />
-          <p className="text-xl md:text-2xl font-serif text-foreground/80 max-w-sm text-center">
-            “Mom, when <br/>
-            will <span className="text-red-700">dad</span> come<br/> 
-            back?”
+          <p className="text-lg sm:text-xl md:text-2xl font-serif max-w-sm text-center">
+            “Mom, when <br />
+            will <span className="text-red-700">dad</span> come<br /> back?”
           </p>
         </div>
       </div>
