@@ -1,22 +1,30 @@
 "use client";
 
-import { useTheme } from "./theme-provider";
-import { Sun, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 export function ThemeSwitch() {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
+
+  const isDark = theme === "dark";
 
   return (
-    <button
-      onClick={toggleTheme}
-      aria-label="Toggle theme"
-      className="p-2 rounded-full transition-colors hover:bg-accent/10"
-    >
-      {theme === "light" ? (
-        <Moon className="w-5 h-5" />
-      ) : (
-        <Sun className="w-5 h-5" />
-      )}
-    </button>
+    <div className="flex items-center space-x-2">
+      <Label htmlFor="theme-mode" className="text-sm text-muted-foreground">
+        {isDark ? "Dark" : "Light"} mode
+      </Label>
+      <Switch
+        id="theme-mode"
+        checked={isDark}
+        onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+        className="data-[state=checked]:bg-slate-800"
+      />
+    </div>
   );
 }

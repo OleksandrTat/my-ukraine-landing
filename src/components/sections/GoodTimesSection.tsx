@@ -37,7 +37,7 @@ export default function GoodTimesSection() {
                               src={`/${img}`}
                               alt={`Ukraine moment ${index + 1}`}
                               fill
-                              className="object-cover"
+                              className="object-cover img-hover"
                             />
                           </div>
                         </CardContent>
@@ -48,14 +48,14 @@ export default function GoodTimesSection() {
               </CarouselContent>
 
               {/* Controls */}
-              <CarouselPrevious className="top-[-40px] left-1/2 -translate-x-1/2 rounded-full border border-neutral-300 bg-white/80 hover:bg-neutral-100 shadow-sm" />
-              <CarouselNext className="bottom-[-40px] left-1/2 -translate-x-1/2 rounded-full border border-neutral-300 bg-white/80 hover:bg-neutral-100 shadow-sm" />
+              <CarouselPrevious className="top-[-40px] left-1/2 -translate-x-1/2 rounded-full border border-border bg-card/80 hover:bg-card shadow-sm" />
+              <CarouselNext className="bottom-[-40px] left-1/2 -translate-x-1/2 rounded-full border border-border bg-card/80 hover:bg-card shadow-sm" />
             </Carousel>
           </div>
 
           {/* === Right side: Text === */}
           <div className="mt-10 md:mt-0 md:w-[420px] text-center md:text-left">
-            <p className="text-xl md:text-2xl font-light leading-relaxed text-neutral-800 font-serif">
+            <p className="text-xl md:text-2xl font-light leading-relaxed text-foreground font-serif">
               In this land, the wind blows freely. <br />
               Every dawn is a promise.
             </p>
@@ -76,7 +76,7 @@ export default function GoodTimesSection() {
           </div>
         </div>
 
-        <p className="mt-8 text-xl md:text-2xl text-neutral-800 font-serif leading-relaxed">
+        <p className="mt-8 text-xl md:text-2xl text-foreground font-serif leading-relaxed">
           Simple smiles, peaceful days. <br />
           The beauty of everyday life.
         </p>

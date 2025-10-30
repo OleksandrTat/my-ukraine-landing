@@ -16,7 +16,7 @@ export default function Hero() {
 
       {/* === Layer 2: Text === */}
       <div className="absolute top-[12%] left-[4%] z-[10] text-white">
-        <p className="text-xl md:text-2xl font-serif text-white/90 mb-2 tracking-wide">
+        <p className="text-xl md:text-2xl font-serif text-white mb-2 tracking-wide">
           Two sides of
         </p>
         <h1 className="text-[4rem] md:text-[7rem] font-extrabold font-serif leading-none drop-shadow-[0_3px_6px_rgba(0,0,0,0.3)]">

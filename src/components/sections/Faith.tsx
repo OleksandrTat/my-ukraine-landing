@@ -25,7 +25,7 @@ export default function FaithSection() {
 
         {/* Білий блок поверх */}
         <div className="absolute left-[40%] inset-0 flex items-center justify-center pointer-events-none">
-          <div className="bg-white shadow-lg rounded-tl-xl rounded-bl-xl px-10 py-6 text-lg font-serif text-center leading-snug max-w-xl">
+          <div className="bg-card shadow-lg rounded-tl-xl rounded-bl-xl px-10 py-6 text-lg font-serif text-center leading-snug max-w-xl">
             It’s hard for us, but we keep going — and what helps us is...
           </div>
         </div>
@@ -35,23 +35,23 @@ export default function FaithSection() {
       <div className="relative w-full max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-center mb-32">
         <div className="grid grid-cols-2 gap-4">
           <div className="relative h-[250px] rounded-xl overflow-hidden">
-            <Image src="/faith4.jpg" alt="People 1" fill className="object-cover" />
+            <Image src="/faith4.jpg" alt="People 1" fill className="object-cover img-hover" />
           </div>
           <div className="relative h-[250px] rounded-xl overflow-hidden">
-            <Image src="/faith5.png" alt="People 2" fill className="object-cover" />
+            <Image src="/faith5.png" alt="People 2" fill className="object-cover img-hover" />
           </div>
           <div className="relative col-span-2 h-[260px] rounded-xl overflow-hidden">
-            <Image src="/faith6.png" alt="People 3" fill className="object-cover" />
+            <Image src="/faith6.png" alt="People 3" fill className="object-cover img-hover" />
           </div>
         </div>
 
         <div className="space-y-4 text-center md:text-left px-2">
           <h3 className="text-2xl font-serif">People</h3>
-          <p className="text-neutral-700">There are people who never stay aside.</p>
-          <p className="text-neutral-700">
+          <p className="text-foreground">There are people who never stay aside.</p>
+          <p className="text-foreground">
             They give their time, strength, and hearts to help others.
           </p>
-          <p className="text-neutral-700">
+          <p className="text-foreground">
             Because of these people, hope keeps living even in the hardest times.
           </p>
         </div>
@@ -62,11 +62,11 @@ export default function FaithSection() {
         <h2 className="text-2xl font-serif">
           And <span className="font-bold">YOU</span> also can help Ukraine
         </h2>
-        <p className="text-neutral-700">
+        <p className="text-foreground">
           Even a small action can mean a lot.<br />
           Whether you choose to speak up, donate, or simply care — it all makes a difference.
         </p>
-        <p className="text-neutral-700">The choice is yours.</p>
+        <p className="text-foreground">The choice is yours.</p>
       </div>
 
       {/* === 4. Картки (shadcn/ui Card) === */}
@@ -77,18 +77,18 @@ export default function FaithSection() {
             <CardTitle className="font-serif text-lg">Donate</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-neutral-600">
+            <p className="text-sm">
               Your support saves lives.<br />
               Every donation helps provide food, medicine, and protection to those who need it most.
             </p>
           </CardContent>
           <CardFooter className="flex flex-col gap-2">
-            <Button asChild className="w-full bg-black text-white hover:bg-neutral-800">
+            <Button asChild className="w-full bg-background text-foreground hover:bg-neutral-800">
               <Link href="https://u24.gov.ua/" target="_blank">
                 United24
               </Link>
             </Button>
-            <Button asChild className="w-full bg-black text-white hover:bg-neutral-800">
+            <Button asChild className="w-full bg-accent text-foreground hover:bg-neutral-800">
               <Link href="https://www.comebackalive.in.ua/" target="_blank">
                 Come Back Alive
               </Link>
@@ -102,16 +102,18 @@ export default function FaithSection() {
             <CardTitle className="font-serif text-lg">Share</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-neutral-600">
+            <p className="text-sm">
               Spread the truth.<br />
               By sharing information, you give Ukraine a stronger voice.
             </p>
           </CardContent>
           <CardFooter className="flex justify-center">
-            <Button className="bg-black text-white hover:bg-neutral-800">Share</Button>
+            <Button className="bg-accent text-foreground hover:bg-neutral-800">Share</Button>
           </CardFooter>
         </Card>
       </div>
+
+      
     </section>
   );
 }

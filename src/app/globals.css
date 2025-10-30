@@ -1,44 +1,69 @@
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
 
-/* світла тема за замовчуванням */
+/* === Світла тема === */
 :root {
-  --background: 255 255 255;
-  --foreground: 17 24 39;
-  --accent: 0 102 204;
+  --background: 250 250 250; /* трохи тепліший білий */
+  --foreground: 20 25 40; /* насичений темно-синюватий текст */
+  --accent: 0 102 204; /* чистий синій — український акцент */
+  --muted: 240 241 243; /* м’який сірий фон для блоків */
+  --card: 255 255 255; /* картки білі */
+  --border: 220 223 228; /* ледь помітні границі */
 }
 
-/* темна тема */
+/* === Темна тема === */
 [data-theme="dark"] {
-  --background: 17 24 39;
-  --foreground: 243 244 246;
-  --accent: 0 153 255;
+  --background: 29 29 29; /* #1D1D1D — твій запит */
+  --foreground: 235 236 239; /* #ebecf0 — читабельний, не чисто білий */
+  --accent: 30 144 255; /* DodgerBlue, більш яскравий */
+  --muted: 48 48 52; /* глибокий графіт для карток */
+  --card: 37 37 37; /* трошки світліший фон для карток */
+  --border: 64 64 68; /* м’який контур */
 }
 
+/* === Tailwind tokens === */
 @theme {
   --color-background: rgb(var(--background));
   --color-foreground: rgb(var(--foreground));
   --color-accent: rgb(var(--accent));
+  --color-muted: rgb(var(--muted));
+  --color-card: rgb(var(--card));
+  --color-border: rgb(var(--border));
 }
 
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
 }
-
 
 @layer utilities {
   .before-underline::after {
     content: "";
     position: absolute;
-    bottom: -4px; /* відстань від тексту */
+    bottom: -4px;
     left: 0;
     width: 100%;
     height: 3px;
-    background-color: #b91c1c; /* червоний (#b91c1c — Tailwind red-700) */
+    background-color: #b91c1c;
     border-radius: 9999px;
-    transform: scaleX(0.9) rotate(-2deg); /* легкий нахил для ефекту руки */
+    transform: scaleX(0.9) rotate(-2deg);
     transform-origin: left center;
+  }
+
+  /* --- Hover scale & glow --- */
+  .img-hover {
+    @apply transition-all duration-500 ease-out hover:scale-[1.03] hover:brightness-110 hover:shadow-xl hover:shadow-[rgba(0,0,0,0.25)];
+  }
+
+  /* --- Hover with slight tilt --- */
+  .img-hover-tilt {
+    @apply transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] hover:scale-[1.04] hover:-rotate-1 hover:brightness-110;
+  }
+
+  /* --- For grayscale to color reveal --- */
+  .img-hover-gray {
+    @apply transition-all duration-700 ease-out grayscale hover:grayscale-0 hover:scale-[1.03];
   }
 }

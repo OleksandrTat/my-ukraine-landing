@@ -11,13 +11,13 @@ export default function RememberTimes() {
 
       {/* Контент */}
       <div className="flex flex-col md:flex-row items-center gap-10 max-w-5xl">
-        <div className="relative w-full md:w-1/2 aspect-[3/4] rounded-3xl overflow-hidden shadow-lg">
+        <div className="relative w-full md:w-1/2 aspect-[3/4] rounded-3xl shadow-lg">
           <Image
             src="/remember.png"
             alt="Girl in a wheat field"
             fill
             sizes="(max-width: 768px) 100vw, 500px"
-            className="object-cover"
+            className="object-cover img-hover-tilt rounded-3xl"
             priority
           />
         </div>
@@ -36,7 +36,7 @@ export default function RememberTimes() {
       </div>
 
       {/* === SVG як зображення === */}
-      <div className="absolute left-1/2 bottom-[20vh] -translate-x-1/2 w-[85vw] h-auto pointer-events-none z-[-1]">
+      <div className="absolute left-1/2 bottom-[20vh] -translate-x-1/2 w-[85vw] h-[auto] pointer-events-none z-[-1]">
         <Image
           src="/line.svg"
           alt="Decorative line"

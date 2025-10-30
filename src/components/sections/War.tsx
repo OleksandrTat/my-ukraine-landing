@@ -66,7 +66,7 @@ export default function BeforeAfterSection() {
             alt="Divider line"
             width={70}
             height={10}
-            className="inline-block -mx-5"
+            className="inline-block -mx-5 -mr-7"
           />
         </span>{" "}
         after
@@ -103,8 +103,8 @@ export default function BeforeAfterSection() {
             )}
           </CarouselContent>
 
-          <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-lg rounded-full w-10 h-10" />
-          <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-lg rounded-full w-10 h-10" />
+          <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 bg-card/80 hover:bg-card shadow-lg rounded-full w-10 h-10" />
+          <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 bg-card/80 hover:bg-card shadow-lg rounded-full w-10 h-10" />
         </Carousel>
       </div>
 
@@ -117,9 +117,9 @@ export default function BeforeAfterSection() {
             alt="Destroyed home"
             width={350}
             height={250}
-            className="rounded-xl shadow-lg object-cover"
+            className="rounded-xl shadow-lg object-cover img-hover-gray"
           />
-          <p className="text-xl md:text-2xl font-serif text-black/80 max-w-sm">
+          <p className="text-xl md:text-2xl font-serif text-foreground/80 max-w-sm">
             “My <span className="text-red-700">home</span>...”
           </p>
         </div>
@@ -131,9 +131,9 @@ export default function BeforeAfterSection() {
             alt="Lost toy"
             width={350}
             height={250}
-            className="rounded-xl shadow-lg object-cover"
+            className="rounded-xl shadow-lg object-cover img-hover-gray"
           />
-          <p className="text-xl md:text-2xl font-serif text-black/80 max-w-sm text-right">
+          <p className="text-xl md:text-2xl font-serif text-foreground/80 max-w-sm text-right">
             “I lose my <span className="text-red-700">toy</span>”
           </p>
         </div>
@@ -145,9 +145,9 @@ export default function BeforeAfterSection() {
             alt="Waiting girl"
             width={350}
             height={250}
-            className="rounded-xl shadow-lg object-cover"
+            className="rounded-xl shadow-lg object-cover img-hover-gray"
           />
-          <p className="text-xl md:text-2xl font-serif text-black/80 max-w-sm text-center">
+          <p className="text-xl md:text-2xl font-serif text-foreground/80 max-w-sm text-center">
             “Mom, when <br/>
             will <span className="text-red-700">dad</span> come<br/> 
             back?”
