@@ -13,9 +13,37 @@ gsap.registerPlugin(ScrollTrigger);
 export default function FaithSection() {
   const sectionRef = useRef(null);
 
+  // 🆕 функція для кнопки "Share"
+  const handleShare = async () => {
+    const shareData = {
+      title: "Help Ukraine",
+      text: "Stand with Ukraine 🇺🇦 — learn how you can help.",
+      url: typeof window !== "undefined" ? window.location.href : "https://example.com",
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(shareData.url);
+        alert("Link copied to clipboard!");
+      } else {
+        // fallback
+        const el = document.createElement("textarea");
+        el.value = shareData.url;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+        alert("Link copied!");
+      }
+    } catch (err) {
+      console.error("Share failed:", err);
+    }
+  };
+
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // === Анімація для блоків зверху вниз ===
       gsap.utils.toArray(".fade-up").forEach((el: any) => {
         gsap.from(el, {
           y: 80,
@@ -30,7 +58,6 @@ export default function FaithSection() {
         });
       });
 
-      // === Легке з’явлення карток ===
       gsap.utils.toArray(".card-anim").forEach((el: any, i) => {
         gsap.from(el, {
           y: 60,
@@ -45,8 +72,8 @@ export default function FaithSection() {
         });
       });
 
-      // === Фото в другому блоці — з різних сторін ===
-      gsap.from(".potos-left img:nth-child(odd)", {
+      // виправлені класи photos-left
+      gsap.from(".phodtos-left img:nth-child(odd)", {
         x: -100,
         opacity: 0,
         stagger: 0.2,
@@ -58,7 +85,7 @@ export default function FaithSection() {
         },
       });
 
-      gsap.from(".phtos-left img:nth-child(even)", {
+      gsap.from(".phodtos-left img:nth-child(even)", {
         x: 100,
         opacity: 0,
         stagger: 0.2,
@@ -76,7 +103,7 @@ export default function FaithSection() {
 
   return (
     <section ref={sectionRef} className="relative flex flex-col items-center justify-center py-20 sm:py-32 px-4">
-      {/* === 1. Перший блок === */}
+      {/* === Перший блок === */}
       <div className="fade-up relative w-full max-w-4xl mx-auto mb-24 sm:mb-40">
         <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-3 sm:grid-rows-2 gap-4 h-auto sm:h-[500px]">
           <div className="relative sm:row-span-2 rounded-xl overflow-hidden h-[40vh] sm:h-auto">
@@ -101,7 +128,7 @@ export default function FaithSection() {
         </div>
       </div>
 
-      {/* === 2. Другий блок === */}
+      {/* === Другий блок === */}
       <div className="fade-up relative w-full max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-center mb-24">
         <div className="photos-left grid grid-cols-2 gap-4">
           <div className="relative h-[35vh] sm:h-[250px] rounded-xl overflow-hidden">
@@ -116,9 +143,9 @@ export default function FaithSection() {
         </div>
 
         <div className="space-y-4 text-center md:text-left px-2">
-          <h3 className="text-xl sm:text-2xl font-serif">People</h3>
-          <p className="text-foreground text-sm sm:text-base">There are people who never stay aside.</p>
-          <p className="text-foreground text-sm sm:text-base">
+          <h3 className="text-3xl sm:text-4xl font-serif">People</h3>
+          <p className="text-foreground text-xl sm:text-base">There are people who never stay aside.</p>
+          <p className="text-foreground text-xm sm:text-base">
             They give their time, strength, and hearts to help others.
           </p>
           <p className="text-foreground text-sm sm:text-base">
@@ -127,54 +154,87 @@ export default function FaithSection() {
         </div>
       </div>
 
-      {/* === 3. Текст перед картками === */}
+      {/* === Текст перед картками === */}
       <div className="fade-up text-center space-y-4 mb-10 sm:mb-12 max-w-2xl">
-        <h2 className="text-xl sm:text-2xl font-serif">
+        <h2 className="text-3xl sm:text-4xl font-serif">
           And <span className="font-bold">YOU</span> also can help Ukraine
         </h2>
-        <p className="text-foreground text-sm sm:text-base">
+        <p className="text-foreground text-xl sm:text-base">
           Even a small action can mean a lot.<br />
           Whether you choose to speak up, donate, or simply care — it all makes a difference.
         </p>
-        <p className="text-foreground text-sm sm:text-base">The choice is yours.</p>
+        <p className="text-foreground text-xl sm:text-base">The choice is yours.</p>
       </div>
 
-      {/* === 4. Картки === */}
-      <div className="flex flex-col md:flex-row gap-6 justify-center items-center w-full">
-        <Card className="card-anim w-full sm:w-[260px] text-center">
-          <CardHeader>
-            <CardTitle className="font-serif text-lg">Donate</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm">
-              Your support saves lives.<br />
-              Every donation helps provide food, medicine, and protection to those who need it most.
-            </p>
-          </CardContent>
-          <CardFooter className="flex flex-col gap-2">
-            <Button asChild className="w-full bg-background text-foreground hover:bg-neutral-800">
-              <Link href="https://u24.gov.ua/" target="_blank">United24</Link>
-            </Button>
-            <Button asChild className="w-full bg-accent text-foreground hover:bg-neutral-800">
-              <Link href="https://www.comebackalive.in.ua/" target="_blank">Come Back Alive</Link>
-            </Button>
-          </CardFooter>
-        </Card>
-
-        <Card className="card-anim w-full sm:w-[260px] text-center">
-          <CardHeader>
-            <CardTitle className="font-serif text-lg">Share</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm">
-              Spread the truth.<br />
-              By sharing information, you give Ukraine a stronger voice.
-            </p>
-          </CardContent>
-          <CardFooter className="flex justify-center">
-            <Button className="bg-accent text-foreground hover:bg-neutral-800">Share</Button>
-          </CardFooter>
-        </Card>
+      {/* === Картки === */}
+      <div className="flex flex-col md:flex-row gap-8 justify-center items-stretch w-full mt-10">
+        {[
+          {
+            title: "Donate",
+            text: (
+              <>
+                Your support saves lives.<br />
+                Every donation helps provide food, medicine, and protection to those who need it most.
+              </>
+            ),
+            buttons: [
+              { label: "United24", href: "https://u24.gov.ua/" },
+              { label: "Come Back Alive", href: "https://www.comebackalive.in.ua/" },
+            ],
+          },
+          {
+            title: "Share",
+            text: (
+              <>
+                Spread the truth.<br />
+                By sharing information, you give Ukraine a stronger voice.
+              </>
+            ),
+            buttons: [{ label: "Share", onClick: handleShare }], // 🆕
+          },
+        ].map((card, i) => (
+          <Card
+            key={i}
+            className="card-anim relative w-full sm:w-[280px] text-center border border-border/40 bg-gradient-to-b from-background to-background/80 shadow-[0_10px_25px_rgba(0,0,0,0.1)] rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_15px_40px_rgba(0,0,0,0.15)] hover:-translate-y-2 hover:scale-[1.03] hover:border-accent/50 group"
+          >
+            {/* декоративний шар — тепер не блокує кліки */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-10 bg-accent blur-2xl transition-opacity duration-500 pointer-events-none" />
+            <CardHeader>
+              <CardTitle className="font-serif text-xl text-foreground">{card.title}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground leading-relaxed">{card.text}</p>
+            </CardContent>
+            <CardFooter className="flex flex-col gap-3 mt-auto">
+              {card.buttons.map((btn, j) =>
+                "href" in btn ? (
+                  <Button
+                    asChild
+                    key={j}
+                    className={`w-full rounded-xl font-medium transition-all ${
+                      j === 0
+                        ? "bg-accent text-white hover:bg-accent/90 shadow-md"
+                        : "bg-transparent border border-foreground/20 text-foreground hover:bg-foreground/10"
+                    }`}
+                  >
+                    <Link href={btn.href} target={btn.href.startsWith("http") ? "_blank" : "_self"}>
+                      {btn.label}
+                    </Link>
+                  </Button>
+                ) : (
+                  // 🆕 Кнопка з onClick
+                  <Button
+                    key={j}
+                    onClick={btn.onClick}
+                    className="w-full rounded-xl font-medium bg-accent text-white hover:bg-accent/90 shadow-md transition-all"
+                  >
+                    {btn.label}
+                  </Button>
+                )
+              )}
+            </CardFooter>
+          </Card>
+        ))}
       </div>
     </section>
   );

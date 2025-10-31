@@ -12,52 +12,36 @@ export default function RememberTimes() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Анімація першого заголовка
       gsap.from(".remember-title", {
-        scrollTrigger: {
-          trigger: ".remember-title",
-          start: "top 80%",
-        },
+        scrollTrigger: { trigger: ".remember-title", start: "top 85%" },
         y: 60,
         opacity: 0,
-        duration: 1,
+        duration: 1.2,
         ease: "power3.out",
       });
 
-      // Анімація зображення
       gsap.from(".remember-img", {
-        scrollTrigger: {
-          trigger: ".remember-img",
-          start: "top 85%",
-        },
-        x: -100,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-      });
-
-      // Анімація тексту поруч
-      gsap.from(".remember-text p", {
-        scrollTrigger: {
-          trigger: ".remember-text",
-          start: "top 90%",
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        stagger: 0.25,
-      });
-
-      // Анімація фінального заголовка (February 24)
-      gsap.from(".remember-end", {
-        scrollTrigger: {
-          trigger: ".remember-end",
-          start: "top 85%",
-        },
-        y: 80,
+        scrollTrigger: { trigger: ".remember-img", start: "top 85%" },
+        x: -120,
         opacity: 0,
         duration: 1.2,
+        ease: "power3.out",
+      });
+
+      gsap.from(".remember-text p", {
+        scrollTrigger: { trigger: ".remember-text", start: "top 90%" },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.25,
+        ease: "power2.out",
+      });
+
+      gsap.from(".remember-end", {
+        scrollTrigger: { trigger: ".remember-end", start: "top 85%" },
+        y: 80,
+        opacity: 0,
+        duration: 1.3,
         ease: "power3.out",
       });
     }, sectionRef);
@@ -68,27 +52,28 @@ export default function RememberTimes() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex flex-col items-center justify-center py-24 px-6 text-center"
+      className="relative flex flex-col items-center justify-center py-48 px-8 text-center overflow-hidden"
     >
-      {/* Заголовок */}
-      <h2 className="remember-title text-2xl md:text-3xl mt-[20vh] mb-[40vh] font-serif">
+      {/* === Заголовок === */}
+      <h2 className="remember-title text-3xl md:text-5xl font-serif mt-[10vh] mb-[40vh] leading-tight tracking-tight">
         We still remember those times...
       </h2>
 
-      {/* Контент */}
-      <div className="flex flex-col md:flex-row items-center gap-10 max-w-5xl">
-        <div className="relative remember-img w-full md:w-1/2 aspect-[3/4] rounded-3xl shadow-lg">
+      {/* === Контент === */}
+      <div className="flex flex-col md:flex-row items-center gap-20 max-w-7xl mx-auto">
+        {/* Фото */}
+        <div className="relative remember-img w-full md:w-1/2 aspect-[3/4] rounded-[2rem] shadow-2xl">
           <Image
             src="/remember.png"
             alt="Girl in a wheat field"
             fill
-            sizes="(max-width: 768px) 100vw, 500px"
-            className="object-cover img-hover-tilt rounded-3xl"
+            className="object-cover rounded-[2rem] img-hover-tilt"
             priority
           />
         </div>
 
-        <div className="remember-text md:w-1/2 text-left space-y-4 text-base md:text-lg leading-relaxed font-light">
+        {/* Текст */}
+        <div className="remember-text md:w-1/2 text-left space-y-8 text-lg md:text-2xl leading-relaxed font-light text-foreground">
           <p>Times when everything seemed simple and sincere.</p>
           <p>
             When smiles were a daily miracle, and faith in goodness was an
@@ -101,15 +86,14 @@ export default function RememberTimes() {
         </div>
       </div>
 
-      {/* Фінальний текст */}
-      <h2 className="remember-end relative z-10 mt-[50vh] text-2xl md:text-3xl font-serif text-center">
+
+      {/* === Фінальний текст === */}
+      <h2 className="remember-end relative z-10 mt-[45vh] text-3xl md:text-5xl font-serif leading-tight tracking-tight">
         But <br />
         <span className="text-red-700 font-semibold">February 24, 2022...</span>
         <br />
         The world was divided into before and{" "}
-        <span className="relative inline-block before-underline">
-          after.
-        </span>
+        <span className="relative text-red-600 font-semibold">after.</span>
       </h2>
     </section>
   );

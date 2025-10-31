@@ -75,7 +75,7 @@ export default function GoodTimesSection() {
   return (
     <div ref={sectionRef}>
       {/* === Section 1: Carousel + Text === */}
-      <section className="relative w-full pb-24 pt-40 overflow-hidden">
+      <section className="relative w-full pb-24 pt-40 overflow-hidden scale-[1.1] md:scale-[1.15] origin-center">
         <div className="container mx-auto flex flex-col items-center md:flex-row md:justify-center md:gap-16">
           {/* === Left side: Vertical Carousel === */}
           <div className="relative good-carousel">
@@ -114,8 +114,8 @@ export default function GoodTimesSection() {
           </div>
 
           {/* === Right side: Text === */}
-          <div className="good-text mt-10 md:mt-0 md:w-[420px] text-center md:text-left">
-            <p className="text-xl md:text-2xl font-light leading-relaxed text-foreground font-serif">
+          <div className="good-text mt-12 md:mt-0 md:w-[480px] text-center md:text-left">
+            <p className="text-2xl md:text-[1.8rem] font-light leading-relaxed text-foreground font-serif">
               In this land, the wind blows freely. <br />
               Every dawn is a promise.
             </p>
@@ -124,9 +124,9 @@ export default function GoodTimesSection() {
       </section>
 
       {/* === Section 2: Peaceful Days Block === */}
-      <section className="w-full py-20 flex flex-col items-center text-center overflow-hidden">
-        <div className="relative w-[90%] max-w-3xl peaceful-image">
-          <div className="relative w-full aspect-[16/9] overflow-hidden rounded-3xl shadow-lg">
+      <section className="w-full py-24 flex flex-col items-center text-center overflow-hidden">
+        <div className="relative w-[90%] max-w-4xl peaceful-image">
+          <div className="relative w-full aspect-[16/9] overflow-hidden rounded-[2rem] shadow-xl">
             <Image
               src="/peaceful-days.png"
               alt="Children in the field"
@@ -136,7 +136,7 @@ export default function GoodTimesSection() {
           </div>
         </div>
 
-        <p className="peaceful-text mt-8 text-xl md:text-2xl text-foreground font-serif leading-relaxed">
+        <p className="peaceful-text mt-8 text-2xl md:text-[1.8rem] text-foreground font-serif leading-relaxed">
           Simple smiles, peaceful days. <br />
           The beauty of everyday life.
         </p>
