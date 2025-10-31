@@ -46,7 +46,7 @@ export default function FaithSection() {
       });
 
       // === Фото в другому блоці — з різних сторін ===
-      gsap.from(".photos-left img:nth-child(odd)", {
+      gsap.from(".potos-left img:nth-child(odd)", {
         x: -100,
         opacity: 0,
         stagger: 0.2,
@@ -58,7 +58,7 @@ export default function FaithSection() {
         },
       });
 
-      gsap.from(".photos-left img:nth-child(even)", {
+      gsap.from(".phtos-left img:nth-child(even)", {
         x: 100,
         opacity: 0,
         stagger: 0.2,

@@ -32,7 +32,7 @@ export default function Hero() {
       });
 
       // === Текст і кнопки ===
-      const tl = gsap.timeline({ delay: 0.3 });
+      const tl = gsap.timeline({ delay: 0.1 });
       tl.from(".hero-title", {
         y: 40,
         opacity: 0,
@@ -47,7 +47,7 @@ export default function Hero() {
             duration: 1,
             ease: "power3.out",
           },
-          "-=0.5"
+          "-=0.1"
         )
         .from(
           ".hero-buttons button",
@@ -55,10 +55,18 @@ export default function Hero() {
             y: 20,
             opacity: 0,
             stagger: 0.15,
-            duration: 0.8,
+            duration: 0.1,
             ease: "power2.out",
           },
-          "-=0.4"
+          "-=0"
+        )
+        .to(
+          ".hero-buttons button",
+          {
+            opacity: 1,
+            ease: "power2.out",
+          },
+          "-=0.1"
         );
     }, heroRef);
 

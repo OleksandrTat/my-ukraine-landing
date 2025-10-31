@@ -158,7 +158,7 @@ export default function BeforeAfterSection() {
       </div>
 
       {/* === 4. Емоційні блоки === */}
-      <div className="relative z-10 w-full max-w-4xl flex flex-col gap-12 md:gap-16 px-4">
+      <div className="relative z-10 w-full max-w-4xl flex flex-col gap-12 md:gap-16 px-4 mt-10">
         <div className="emotion-block flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
           <Image
             src="/child-home.png"
