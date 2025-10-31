@@ -76,7 +76,7 @@ export default function GoodTimesSection() {
     <div ref={sectionRef}>
       {/* === Section 1: Carousel + Text === */}
       <section className="relative w-full pb-24 pt-40 overflow-hidden scale-[1.1] md:scale-[1.15] origin-center">
-        <div className="container mx-auto flex flex-col items-center md:flex-row md:justify-center md:gap-16">
+        <div id="about" className="container mx-auto flex flex-col items-center md:flex-row md:justify-center md:gap-16">
           {/* === Left side: Vertical Carousel === */}
           <div className="relative good-carousel">
             <Carousel

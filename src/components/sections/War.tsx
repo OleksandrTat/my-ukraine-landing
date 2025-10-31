@@ -146,7 +146,7 @@ export default function BeforeAfterSection() {
             height={280}
             className="rounded-2xl object-cover shadow-xl w-[80%] sm:w-[60%] md:w-[400px] img-hover-gray"
           />
-          <p className="text-lg sm:text-xl md:text-2xl font-serif max-w-sm text-center md:text-left">
+          <p className="text-xl sm:text-2xl md:text-3xl font-serif max-w-sm text-center md:text-left">
             “My <span className="text-red-700">home</span>...”
           </p>
         </div>
@@ -159,7 +159,7 @@ export default function BeforeAfterSection() {
             height={280}
             className="rounded-2xl object-cover shadow-xl w-[80%] sm:w-[60%] md:w-[400px] img-hover-gray" 
           />
-          <p className="text-lg sm:text-xl md:text-2xl font-serif max-w-sm text-center md:text-right">
+          <p className="text-xl sm:text-2xl md:text-3xl font-serif max-w-sm text-center md:text-right">
             “I lost my <span className="text-red-700">toy</span>”
           </p>
         </div>
@@ -172,12 +172,13 @@ export default function BeforeAfterSection() {
             height={280}
             className="rounded-2xl object-cover shadow-xl w-[80%] sm:w-[60%] md:w-[400px] img-hover-gray"
           />
-          <p className="text-lg sm:text-xl md:text-2xl font-serif max-w-sm text-center">
+          <p className="text-xl sm:text-2xl md:text-3xl font-serif max-w-sm text-center">
             “Mom, when <br /> will <span className="text-red-700">dad</span>{" "}
             come <br /> back?”
           </p>
         </div>
       </div>
+
     </section>
   );
 }

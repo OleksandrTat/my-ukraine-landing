@@ -103,7 +103,6 @@ export default function FaithSection() {
 
   return (
     <section ref={sectionRef} className="relative flex flex-col items-center justify-center py-20 sm:py-32 px-4">
-      {/* === Перший блок === */}
       <div className="fade-up relative w-full max-w-4xl mx-auto mb-24 sm:mb-40">
         <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-3 sm:grid-rows-2 gap-4 h-auto sm:h-[500px]">
           <div className="relative sm:row-span-2 rounded-xl overflow-hidden h-[40vh] sm:h-auto">
@@ -118,12 +117,12 @@ export default function FaithSection() {
         </div>
 
         <div className="absolute hidden sm:flex left-[40%] inset-0 items-center justify-center pointer-events-none">
-          <div className="bg-card shadow-lg rounded-tl-xl rounded-bl-xl px-10 py-6 text-lg font-serif text-center leading-snug max-w-xl">
+          <div className="bg-card shadow-lg rounded-tl-xl rounded-bl-xl px-12 py-8 text-2xl font-serif text-center leading-snug max-w-xl">
             It’s hard for us, but we keep going — and what helps us is...
           </div>
         </div>
 
-        <div className="sm:hidden mt-6 text-center text-base font-serif text-foreground">
+        <div className="sm:hidden mt-6 text-center text-lg font-serif text-foreground">
           It’s hard for us, but we keep going — and what helps us is...
         </div>
       </div>
@@ -142,28 +141,28 @@ export default function FaithSection() {
           </div>
         </div>
 
-        <div className="space-y-4 text-center md:text-left px-2">
-          <h3 className="text-3xl sm:text-4xl font-serif">People</h3>
-          <p className="text-foreground text-xl sm:text-base">There are people who never stay aside.</p>
-          <p className="text-foreground text-xm sm:text-base">
+        <div className="space-y-5 text-center md:text-left px-2">
+          <h3 className="text-4xl sm:text-5xl font-serif">People</h3>
+          <p className="text-foreground text-xl sm:text-2xl">There are people who never stay aside.</p>
+          <p className="text-foreground text-lg sm:text-xl">
             They give their time, strength, and hearts to help others.
           </p>
-          <p className="text-foreground text-sm sm:text-base">
+          <p className="text-foreground text-lg sm:text-xl">
             Because of these people, hope keeps living even in the hardest times.
           </p>
         </div>
       </div>
 
       {/* === Текст перед картками === */}
-      <div className="fade-up text-center space-y-4 mb-10 sm:mb-12 max-w-2xl">
-        <h2 className="text-3xl sm:text-4xl font-serif">
+      <div className="fade-up text-center space-y-5 mt-10 mb-10 sm:mb-12 max-w-2xl">
+        <h2 className="text-4xl sm:text-5xl font-serif">
           And <span className="font-bold">YOU</span> also can help Ukraine
         </h2>
-        <p className="text-foreground text-xl sm:text-base">
+        <p className="text-foreground text-lg sm:text-xl">
           Even a small action can mean a lot.<br />
           Whether you choose to speak up, donate, or simply care — it all makes a difference.
         </p>
-        <p className="text-foreground text-xl sm:text-base">The choice is yours.</p>
+        <p className="text-foreground text-lg sm:text-xl">The choice is yours.</p>
       </div>
 
       {/* === Картки === */}
@@ -190,20 +189,19 @@ export default function FaithSection() {
                 By sharing information, you give Ukraine a stronger voice.
               </>
             ),
-            buttons: [{ label: "Share", onClick: handleShare }], // 🆕
+            buttons: [{ label: "Share", onClick: handleShare }],
           },
         ].map((card, i) => (
           <Card
             key={i}
-            className="card-anim relative w-full sm:w-[280px] text-center border border-border/40 bg-gradient-to-b from-background to-background/80 shadow-[0_10px_25px_rgba(0,0,0,0.1)] rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_15px_40px_rgba(0,0,0,0.15)] hover:-translate-y-2 hover:scale-[1.03] hover:border-accent/50 group"
+            className="card-anim relative w-full sm:w-[300px] text-center border border-border/40 bg-gradient-to-b from-background to-background/80 shadow-[0_10px_25px_rgba(0,0,0,0.1)] rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_15px_40px_rgba(0,0,0,0.15)] hover:-translate-y-2 hover:scale-[1.03] hover:border-accent/50 group"
           >
-            {/* декоративний шар — тепер не блокує кліки */}
             <div className="absolute inset-0 opacity-0 group-hover:opacity-10 bg-accent blur-2xl transition-opacity duration-500 pointer-events-none" />
             <CardHeader>
-              <CardTitle className="font-serif text-xl text-foreground">{card.title}</CardTitle>
+              <CardTitle className="font-serif text-2xl text-foreground">{card.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground leading-relaxed">{card.text}</p>
+              <p className="text-base text-muted-foreground leading-relaxed">{card.text}</p>
             </CardContent>
             <CardFooter className="flex flex-col gap-3 mt-auto">
               {card.buttons.map((btn, j) =>
@@ -222,7 +220,6 @@ export default function FaithSection() {
                     </Link>
                   </Button>
                 ) : (
-                  // 🆕 Кнопка з onClick
                   <Button
                     key={j}
                     onClick={btn.onClick}
@@ -236,6 +233,7 @@ export default function FaithSection() {
           </Card>
         ))}
       </div>
+
     </section>
   );
 }

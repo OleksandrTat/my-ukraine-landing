@@ -55,23 +55,27 @@ export default function Hero() {
             y: 20,
             opacity: 0,
             stagger: 0.15,
-            duration: 0.1,
+            duration: 0.6,
             ease: "power2.out",
           },
-          "-=0"
-        )
-        .to(
-          ".hero-buttons button",
-          {
-            opacity: 1,
-            ease: "power2.out",
-          },
-          "-=0.1"
+          "-=0.2"
         );
     }, heroRef);
 
     return () => ctx.revert();
   }, []);
+
+  // === Обробники кнопок ===
+  const handleLearnMore = () => {
+    const aboutSection = document.querySelector("#about");
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleSupport = () => {
+    window.open("https://u24.gov.ua/", "_blank");
+  };
 
   return (
     <section
@@ -91,20 +95,26 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/40 md:bg-black/30 z-0" />
 
       {/* === Контент === */}
-      <div className="relative z-10 px-6 sm:px-10 md:px-16 max-w-3xl flex flex-col items-center">
-        <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl font-serif text-white leading-tight drop-shadow-lg">
+      <div className="relative z-10 px-6 sm:px-10 md:px-16 max-w-4xl flex flex-col items-center scale-[1.08]">
+        <h1 className="hero-title text-4xl sm:text-5xl lg:text-6xl font-serif text-white leading-tight drop-shadow-xl">
           We remember the <span className="text-yellow-300">light</span> before the darkness
         </h1>
 
-        <p className="hero-subtext mt-6 text-base sm:text-lg md:text-xl text-white/90 max-w-xl leading-relaxed">
+        <p className="hero-subtext mt-8 text-lg sm:text-xl lg:text-2xl text-white/90 max-w-2xl leading-relaxed">
           Stories that changed lives forever — and a nation that still stands strong.
         </p>
 
-        <div className="hero-buttons mt-10 flex flex-col sm:flex-row gap-4">
-          <button className="px-6 py-3 text-sm sm:text-base rounded-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold transition">
+        <div className="hero-buttons mt-12 flex flex-col sm:flex-row gap-5">
+          <button
+            onClick={handleLearnMore}
+            className="cursor-pointer px-8 py-4 text-base sm:text-lg rounded-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold shadow-md hover:shadow-lg transition-transform hover:scale-[1.05]"
+          >
             Learn More
           </button>
-          <button className="px-6 py-3 text-sm sm:text-base rounded-full border border-white/60 hover:bg-white/10 text-white font-semibold transition">
+          <button
+            onClick={handleSupport}
+            className="cursor-pointer px-8 py-4 text-base sm:text-lg rounded-full border border-white/70 hover:bg-white/10 text-white font-semibold shadow-md hover:shadow-lg transition-transform hover:scale-[1.05]"
+          >
             Support Ukraine
           </button>
         </div>
